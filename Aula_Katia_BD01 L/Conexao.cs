@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Aula_Katia_BD01_L
 {
     internal class Conexao
     {
-        static private string servidor = "";
+        static private string servidor = "localhost";
         static private string banco = "Aula_Katia_BD01";
         static private string usuario = "root";
         static private string senha = "cursoads";
@@ -35,7 +36,8 @@ namespace Aula_Katia_BD01_L
             }
             return result;
         }
-        private void Desconectar(){
+        private void Desconectar()
+        {
             if (cn.State == System.Data.ConnectionState.Open)
             {
                 cn.Close();
@@ -44,7 +46,7 @@ namespace Aula_Katia_BD01_L
         public bool Executar(String sql)
         {
             bool resultado = false;
-            if(Conectar())
+            if (Conectar())
             {
                 try
                 {
@@ -62,6 +64,28 @@ namespace Aula_Katia_BD01_L
                 }
             }
             return resultado;
+        }
+
+        public DataTable Retorna(string sql)
+        {
+            Conectar();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, cn);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable data = new DataTable();
+                da.Fill(data);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Desconectar();
+            }
         }
     }
 }
