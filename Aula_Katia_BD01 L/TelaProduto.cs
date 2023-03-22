@@ -49,6 +49,14 @@ namespace Aula_Katia_BD01_L
         {
             string sql = "delete from tb_produto where prod_id=" +
                 txtCodigo.Text;
+            if (con.Executar(sql))
+            {
+                MessageBox.Show("Excluído com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show("Erro ao excluir!");
+            }
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
