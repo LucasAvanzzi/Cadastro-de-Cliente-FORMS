@@ -57,6 +57,7 @@
             this.btnProduto.TabIndex = 2;
             this.btnProduto.Text = "Produto";
             this.btnProduto.UseVisualStyleBackColor = false;
+            this.btnProduto.Click += new System.EventHandler(this.btnProduto_Click);
             // 
             // btnFornecedor
             // 
@@ -87,14 +88,14 @@
             // 
             this.plPrincipal.Location = new System.Drawing.Point(135, 12);
             this.plPrincipal.Name = "plPrincipal";
-            this.plPrincipal.Size = new System.Drawing.Size(432, 360);
+            this.plPrincipal.Size = new System.Drawing.Size(922, 472);
             this.plPrincipal.TabIndex = 1;
             // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 384);
+            this.ClientSize = new System.Drawing.Size(1069, 496);
             this.Controls.Add(this.plPrincipal);
             this.Controls.Add(this.panel1);
             this.Name = "TelaPrincipal";

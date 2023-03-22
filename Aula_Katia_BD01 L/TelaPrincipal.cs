@@ -31,5 +31,18 @@ namespace Aula_Katia_BD01_L
             tela.Show();
 
         }
+
+        private void btnProduto_Click(object sender, EventArgs e)
+        {
+            tela?.Close();
+            tela = new TelaProduto
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill,
+            };
+            plPrincipal.Controls.Add(tela);
+            tela.Show();
+        }
     }
 }

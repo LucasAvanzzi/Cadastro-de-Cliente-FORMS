@@ -11,7 +11,7 @@ namespace Aula_Katia_BD01_L
     internal class Conexao
     {
         static private string servidor = "localhost";
-        static private string banco = "Aula_Katia_BD01";
+        static private string banco = "bd_teste";
         static private string usuario = "root";
         static private string senha = "cursoads";
 

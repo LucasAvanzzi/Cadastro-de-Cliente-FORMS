@@ -32,11 +32,10 @@ namespace Aula_Katia_BD01_L
 
         private void CarregaTabela()
         {
-            dgvDados.Source = null;
-            DataTable dados = con.Retorna(
-                "select * from tb_categoria"
-                );
-            dgvDados.DataSource = dados;
+            dvgDados.DataSource = null;
+            DataTable dados = con.Retorna("select prod_codigo, prod_nome, " + "prod_descricao, cat_descricao, prod_valor " +
+                "from tb_produto inner join tb_categoria on prod_categoria=cat_id ");
+            dvgDados.DataSource = dados;
         }
 
         private void TelaProduto_Load(object sender, EventArgs e)
@@ -89,6 +88,30 @@ namespace Aula_Katia_BD01_L
             {
                 MessageBox.Show("Erro ao cadastrar!");
             }
+
+
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dados = con.Retorna("select * from tb_produto " + "where prod_codigo=" + txtCodigo.Text);
+            txtNome.Text = dados.Rows[0]["prod_nome"].ToString();
+            txtDescricao.Text = dados.Rows[0]["prod_descricao"].ToString();
+            cbxCategoria.SelectedValue = Convert.ToInt32(
+            dados.Rows[0]["prod_categoria"]);
+            txtValor.Text = dados.Rows[0]["prod_valor"].ToString();
+        }
+
+        private void dvgDados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int codigo = Convert.ToInt32(dvgDados["prod_codigo",e.RowIndex].Value);
+            DataTable dados = con.Retorna("select * from tb_produto " +
+            "where prod_codigo=" + codigo);
+            txtCodigo.Text = codigo.ToString();
+            txtNome.Text = dados.Rows[0]["prod_nome"].ToString();
+            txtDescricao.Text = dados.Rows[0]["prod_categoria"].ToString();
+            cbxCategoria.SelectedValue = Convert.ToInt32(dados.Rows[0]["prod_categoria"]);
+            txtValor.Text = dados.Rows[0]["prod_valor"].ToString();
         }
     }
 }
