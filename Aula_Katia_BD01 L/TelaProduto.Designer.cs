@@ -42,6 +42,7 @@
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.dvgDados = new System.Windows.Forms.DataGridView();
+            this.btnGerar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvgDados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,11 +168,23 @@
             this.dvgDados.TabIndex = 13;
             this.dvgDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgDados_CellContentClick);
             // 
+            // btnGerar
+            // 
+            this.btnGerar.Location = new System.Drawing.Point(650, 235);
+            this.btnGerar.Name = "btnGerar";
+            this.btnGerar.Size = new System.Drawing.Size(138, 50);
+            this.btnGerar.TabIndex = 14;
+            this.btnGerar.Text = "Gerar P.D.F";
+            this.btnGerar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnGerar.UseVisualStyleBackColor = true;
+            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
+            // 
             // TelaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 591);
+            this.Controls.Add(this.btnGerar);
             this.Controls.Add(this.dvgDados);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAtualizar);
@@ -211,5 +224,6 @@
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.DataGridView dvgDados;
+        private System.Windows.Forms.Button btnGerar;
     }
 }

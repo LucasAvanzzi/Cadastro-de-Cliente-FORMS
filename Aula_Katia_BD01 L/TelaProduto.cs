@@ -1,8 +1,11 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,9 +112,26 @@ namespace Aula_Katia_BD01_L
             "where prod_codigo=" + codigo);
             txtCodigo.Text = codigo.ToString();
             txtNome.Text = dados.Rows[0]["prod_nome"].ToString();
-            txtDescricao.Text = dados.Rows[0]["prod_categoria"].ToString();
+            txtDescricao.Text = dados.Rows[0]["prod_descricao"].ToString();
             cbxCategoria.SelectedValue = Convert.ToInt32(dados.Rows[0]["prod_categoria"]);
             txtValor.Text = dados.Rows[0]["prod_valor"].ToString();
+        }
+
+        private void btnGerar_Click(object sender, EventArgs e)
+        {
+            var doc = new Document(PageSize.A4);
+            doc.SetMargins(40, 40, 40, 40);
+            string nomeArquivo = @"C:\Users\curso.ads2\Documents\docProduto.pdf";
+            PdfWriter.GetInstance(doc, new FileStream(nomeArquivo, FileMode.Create));
+            doc.Open();
+            var fonteBase = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
+            var fonteTitulo = new iTextSharp.text.Font(fonteBase,32,iTextSharp.text.Font.BOLD);
+            var titulo = new Paragraph("RELATÓRIO DE PRODUTOS\n\n", fonteTitulo);
+            titulo.Alignment = Element.ALIGN_CENTER;
+            doc.Add(titulo);
+
+            doc.Close();
+
         }
     }
 }
