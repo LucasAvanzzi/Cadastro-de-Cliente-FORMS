@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -131,6 +132,16 @@ namespace Aula_Katia_BD01_L
             doc.Add(titulo);
 
             doc.Close();
+            var caminhoPdf = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);
+            if (File.Exists(caminhoPdf))
+            {
+                Process.Start(new ProcessStartInfo()
+                    {
+                      Arguments=$"c start {caminhoPdf}",
+                      FileName="cmd.exe",
+                      CreateNoWindow = true
+                    });
+            }
 
         }
     }
