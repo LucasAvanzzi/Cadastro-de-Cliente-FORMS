@@ -131,17 +131,55 @@ namespace Aula_Katia_BD01_L
             titulo.Alignment = Element.ALIGN_CENTER;
             doc.Add(titulo);
 
-            doc.Close();
-            var caminhoPdf = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);
-            if (File.Exists(caminhoPdf))
+
+            var tabela = new PdfPTable(5);
+            tabela.DefaultCell.BorderWidth = 0;
+            tabela.WidthPercentage = 100;
+            var fonteCell = new iTextSharp.text.Font(fonteBase, 14, iTextSharp.text.Font.BOLD, BaseColor, BLACK);
+            var cell1 = new PdfPCell(new Phrase("Código", fonteCell));
+            tabela.AddCell(cell1);
+            var cell2 = new PdfPCell(new Phrase("Código", fonteCell));
+            tabela.AddCell(cell2);
+            var cell3 = new PdfPCell(new Phrase("Código", fonteCell));
+            tabela.AddCell(cell3);
+            var cell4 = new PdfPCell(new Phrase("Código", fonteCell));
+            tabela.AddCell(cell4);
+            var cell5 = new PdfPCell(new Phrase("Código", fonteCell));
+            tabela.AddCell(cell5);
+
+            DataTable dados = con.Retorna(
+                "select * from tb_produto inner join tb_categoria on prod_categoria=cat_id"
+                );
+
+            for (int i = 0; i < dados.Rows.Count; i++)
             {
-                Process.Start(new ProcessStartInfo()
-                    {
-                      Arguments=$"c start {caminhoPdf}",
-                      FileName="cmd.exe",
-                      CreateNoWindow = true
-                    });
+
+                var campo1 = new PdfPCell(new Phrase(dados.Rows[i]["prod_id"].ToString(), fonteCell));
+                tabela.AddCell(campo1);
+                var campo2 = new PdfPCell(new Phrase(dados.Rows[i]["prod_nome"].ToString(), fonteCell));
+                tabela.AddCell(campo2);
+                var campo3 = new PdfPCell(new Phrase(dados.Rows[i]["prod_descricao"].ToString(), fonteCell));
+                tabela.AddCell(campo3);
+                var campo4 = new PdfPCell(new Phrase(dados.Rows[i]["cat_descricao"].ToString(), fonteCell));
+                tabela.AddCell(campo4);
+                var campo5 = new PdfPCell(new Phrase(dados.Rows[i]["prod_valor"].ToString(), fonteCell));
+                tabela.AddCell(campo5);
+
             }
+            doc.Add( tabela );
+            doc.Close();
+
+          //  doc.Close();  //
+         //   var caminhoPdf = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);  //
+         //   if (File.Exists(caminhoPdf))  //
+         //   {  //
+          //      Process.Start(new ProcessStartInfo()  //
+           //         {//
+              //        Arguments=$"c start {caminhoPdf}",  //
+               //       FileName="cmd.exe",  //
+                 //     CreateNoWindow = true  //
+              //      });  //
+         //   }  //
 
         }
     }
