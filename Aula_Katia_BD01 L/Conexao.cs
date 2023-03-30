@@ -34,6 +34,10 @@ namespace Aula_Katia_BD01_L
             {
                 result = false;
             }
+            finally
+            {
+                Desconectar();
+            }
             return result;
         }
         private void Desconectar()
