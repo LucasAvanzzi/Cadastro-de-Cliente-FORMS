@@ -25,8 +25,8 @@ namespace Aula_Katia_BD01_L
             {
 
                 string sql = "insert into tb_cliente values (null, " +
-                txtNome.Text + "','" + mtxtCelular.Text + "','" +
-                mtxtCPF.Text + "', null);";
+                txtNome.Text + "', '" + mtxtCelular.Text + "', '" +
+                mtxtCPF.Text + "');";
 
                 if (con.Executar(sql))
                 {
@@ -40,8 +40,8 @@ namespace Aula_Katia_BD01_L
             else
             {
                 string sql = "update tb_cliente set cli_cpf'" + mtxtCPF.Text +
-                    "',cli_nome='" + txtNome.Text + "', cli_celular='" +
-                    mtxtCelular.Text + "'where cli_id=" + txtID.Text;
+                    "', cli_nome='" + txtNome.Text + "', cli_celular='" +
+                    mtxtCelular.Text + "' where cli_id=" + txtID.Text;
 
                 if (con.Executar(sql))
                 {
